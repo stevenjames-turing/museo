@@ -1,8 +1,11 @@
 require './attributable'
 
 class Artist
+  include Attributable
 
-  def initialize
+  def age_at_death
   end
+
+
 
 end
