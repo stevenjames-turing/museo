@@ -89,7 +89,6 @@ class Curator
         end
       end
     end
-    require 'pry'; binding.pry
     photos_by_age
   end
 end
