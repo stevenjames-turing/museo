@@ -132,7 +132,7 @@ RSpec.describe Curator do
     expect(curator.photographs).to_not eq([])
   end
 
-  xit 'can load artists from a file' do
+  it 'can load artists from a file' do
     expect(curator.artists).to eq([])
 
     curator.load_artists('./data/artists.csv')

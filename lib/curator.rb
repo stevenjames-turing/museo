@@ -62,4 +62,16 @@ class Curator
     end
   end
 
+  def load_artists(file)
+    contents = CSV.open(file, headers: true, header_converters: :symbol)
+    contents.each do |row|
+      @artists << Artist.new({
+        id: row[:id],
+        name: row[:name],
+        born: row[:born],
+        died: row[:died],
+        country: row[:country]})
+    end
+  end
+
 end
