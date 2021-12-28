@@ -109,4 +109,18 @@ RSpec.describe Curator do
 
     expect(curator.artists_with_multiple_photographs).to eq(["Ansel Adams", "Diane Arbus"])
   end
+
+  it 'can list photographs that were taken by arists originating is specific countries' do
+    curator.add_artist(artist_1)
+    curator.add_artist(artist_2)
+    curator.add_artist(artist_3)
+    curator.add_photograph(photo_1)
+    curator.add_photograph(photo_2)
+    curator.add_photograph(photo_3)
+    curator.add_photograph(photo_4)
+
+    expect(curator.photographs_taken_by_artist_from("United States")).to eq([photo_2, photo_3, photo_4])
+    expect(curator.photographs_taken_by_artist_from("Argentina")).to eq([])
+    expect(curator.photographs_taken_by_artist_from("France")).to eq([photo_1])
+  end
 end
