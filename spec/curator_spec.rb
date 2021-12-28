@@ -145,4 +145,16 @@ RSpec.describe Curator do
 
     expect(curator.photographs_taken_between(1950..1965).count).to eq(2)
   end
+
+  it 'can list photos by the age of the artist when photo was taken' do
+    curator.load_photographs('./data/photographs.csv')
+    curator.load_artists('./data/artists.csv')
+
+    diane_arbus = curator.find_artist_by_id("3")
+    expected = {
+      44=>"Identical Twins, Roselle, New Jersey",
+      39=>"Child with Toy Hand Grenade in Central Park"}
+
+    expect(curator.artists_photographs_by_age(diane_arbus)).to eq(expected)
+  end
 end

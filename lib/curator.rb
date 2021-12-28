@@ -78,7 +78,18 @@ class Curator
     photos = @photographs.select do |photo|
       range === photo.year.to_i
     end
-    photos
   end
 
+  def artists_photographs_by_age(artist)
+    photos_by_age = {}
+    photographs_by_artist.each_pair do |key, value|
+      if key == artist
+        value.each do |photo|
+          photos_by_age[photo.year.to_i - key.born.to_i] = photo.name
+        end
+      end
+    end
+    require 'pry'; binding.pry
+    photos_by_age
+  end
 end
