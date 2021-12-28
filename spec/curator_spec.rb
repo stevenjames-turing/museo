@@ -63,7 +63,6 @@ RSpec.describe Curator do
     curator.add_photograph(photo_2)
     curator.add_artist(artist_1)
     curator.add_artist(artist_2)
-
     expect(curator.photographs).to eq([photo_1, photo_2])
     expect(curator.artists).to eq([artist_1, artist_2])
   end
@@ -138,5 +137,12 @@ RSpec.describe Curator do
     curator.load_artists('./data/artists.csv')
 
     expect(curator.artists).to_not eq([])
+  end
+
+  it 'can list photographs taken between 2 given years' do
+    curator.load_photographs('./data/photographs.csv')
+    curator.load_artists('./data/artists.csv')
+
+    expect(curator.photographs_taken_between(1950..1965).count).to eq(2)
   end
 end

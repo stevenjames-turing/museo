@@ -74,4 +74,11 @@ class Curator
     end
   end
 
+  def photographs_taken_between(range)
+    photos = @photographs.select do |photo|
+      range === photo.year.to_i
+    end
+    photos
+  end
+
 end
