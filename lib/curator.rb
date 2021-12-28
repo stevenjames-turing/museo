@@ -1,4 +1,5 @@
 class Curator
+  require 'csv'
 
   attr_reader :photographs, :artists
 
@@ -49,4 +50,16 @@ class Curator
     end
     photographs.flatten
   end
+
+  def load_photographs(file)
+    contents = CSV.open(file, headers: true, header_converters: :symbol)
+    contents.each do |row|
+      @photographs << Photograph.new({
+        id: row[:id],
+        name: row[:name],
+        artist_id: row[:artist_id],
+        year: row[:year]})
+    end
+  end
+
 end

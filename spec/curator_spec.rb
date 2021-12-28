@@ -123,4 +123,20 @@ RSpec.describe Curator do
     expect(curator.photographs_taken_by_artist_from("Argentina")).to eq([])
     expect(curator.photographs_taken_by_artist_from("France")).to eq([photo_1])
   end
+
+  it 'can load photographs from a file' do
+    expect(curator.photographs).to eq([])
+
+    curator.load_photographs('./data/photographs.csv')
+
+    expect(curator.photographs).to_not eq([])
+  end
+
+  xit 'can load artists from a file' do
+    expect(curator.artists).to eq([])
+
+    curator.load_artists('./data/artists.csv')
+
+    expect(curator.artists).to_not eq([])
+  end
 end
